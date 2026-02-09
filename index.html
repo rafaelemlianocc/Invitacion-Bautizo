@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bautizo de Arantza</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+:root{
+    --fondo:#f4f1ea;
+    --fondo-sec:#fffdf9;
+    --dorado:#b8860b;
+    --dorado-claro:#d4a84b;
+    --dorado-oscuro:#8a6a12;
+    --texto:#3a3a3a;
+    --tarjeta:#ffffff;
+    --linea:#d6b45a;
+    --rosa-suave:#f9e8e0;
+    --crema:#faf6ef;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family:'Playfair Display', serif;
+    background-color: var(--fondo);
+    background-image: radial-gradient(var(--linea) 0.5px, transparent 0.5px);
+    background-size: 40px 40px;
+    color:var(--texto);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    overflow-x: hidden;
+}
+
+/* ==================== PANTALLA DE BIENVENIDA ==================== */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #faf6ef 0%, #f4f1ea 50%, #ede4d3 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 1s ease, visibility 1s ease;
+    cursor: pointer;
+}
+
+.splash-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-cross {
+    font-size: 50px;
+    color: var(--dorado);
+    margin-bottom: 20px;
+    animation: floatCross 3s ease-in-out infinite;
+}
+
+@keyframes floatCross {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.splash-screen h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--dorado-oscuro);
+    margin-bottom: 10px;
+}
+
+.splash-screen h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(42px, 12vw, 72px);
+    color: var(--dorado);
+    margin-bottom: 30px;
+}
+
+.splash-open {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 2px solid var(--dorado);
+    color: var(--dorado);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.4s;
+    animation: pulseBtn 2s ease-in-out infinite;
+}
+
+.splash-open:hover {
+    background: var(--dorado);
+    color: #fff;
+}
+
+@keyframes pulseBtn {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(184, 134, 11, 0); }
+}
+
+/* ==================== PARTÍCULAS FLOTANTES ==================== */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    color: var(--dorado-claro);
+    opacity: 0.15;
+    animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* ==================== SECCIONES Y ANIMACIÓN DE ENTRADA ==================== */
+section{
+    width:100%;
+    max-width:1100px;
+    padding:60px 20px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    position: relative;
+    z-index: 1;
+}
+
+.fadeUp {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease-out;
+}
+
+.fadeUp.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==================== SEPARADORES DECORATIVOS ==================== */
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px 0 30px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.section-divider .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dorado-claro), transparent);
+}
+
+.section-divider .icon {
+    color: var(--dorado);
+    font-size: 16px;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--dorado-oscuro);
+    margin-bottom: 5px;
+}
+
+.section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--texto);
+    margin-bottom: 5px;
+}
+
+/* ==================== HERO ==================== */
+.hero{
+    background: linear-gradient(to bottom, #fff, rgba(244, 241, 234, 0.5));
+    padding-top:80px;
+    padding-bottom: 40px;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 25px;
+    border: 1px solid var(--dorado-claro);
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--dorado-oscuro);
+    margin-bottom: 15px;
+}
+
+.hero-img-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 30px auto;
+}
+
+.hero-img{
+    width:240px;
+    height:240px;
+    border-radius:50%;
+    object-fit:cover;
+    border: 5px solid white;
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+    position: relative;
+    z-index: 2;
+}
+
+.hero-img-ring {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    border: 2px solid var(--dorado-claro);
+    animation: ringRotate 10s linear infinite;
+    z-index: 1;
+}
+
+.hero-img-ring::before,
+.hero-img-ring::after {
+    content: '✦';
+    position: absolute;
+    color: var(--dorado);
+    font-size: 14px;
+}
+
+.hero-img-ring::before {
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hero-img-ring::after {
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes ringRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hero h1{
+    font-family:'Great Vibes', cursive;
+    font-size: clamp(40px, 10vw, 64px);
+    color:var(--dorado);
+    margin:15px 0;
+    text-shadow: 0 2px 10px rgba(184, 134, 11, 0.15);
+}
+
+.hero-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--texto);
+    letter-spacing: 2px;
+}
+
+.hero-dove {
+    font-size: 30px;
+    color: var(--dorado-claro);
+    margin-top: 20px;
+    animation: doveFloat 4s ease-in-out infinite;
+}
+
+@keyframes doveFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.05); }
+}
+
+/* ==================== CITA BÍBLICA ==================== */
+.bible-section {
+    background: linear-gradient(135deg, var(--crema), var(--rosa-suave));
+    border-radius: 30px;
+    padding: 50px 30px;
+    margin: 0 20px;
+    max-width: 700px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bible-section::before {
+    content: '\201C';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 120px;
+    font-family: 'Great Vibes', cursive;
+    color: var(--dorado-claro);
+    opacity: 0.15;
+    line-height: 1;
+}
+
+.bible-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--texto);
+    position: relative;
+    z-index: 1;
+}
+
+.bible-ref {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--dorado-oscuro);
+    margin-top: 15px;
+    letter-spacing: 2px;
+}
+
+/* ==================== TARJETAS ==================== */
+.card-box{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    width: 100%;
+}
+
+.quote-box{
+    background:var(--tarjeta);
+    padding:40px;
+    border-radius:20px;
+    border: 1px solid rgba(214, 180, 90, 0.2);
+    box-shadow:0 15px 35px rgba(0,0,0,.05);
+    max-width:450px;
+    transition: transform .3s, box-shadow .3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--dorado-claro), transparent);
+}
+
+.quote-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.08);
+}
+
+.quote-box .card-icon {
+    font-size: 28px;
+    color: var(--dorado);
+    margin-bottom: 15px;
+}
+
+.quote-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.quote-box p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+/* ==================== CONTADOR ==================== */
+.countdown{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap: wrap;
+}
+
+.time-box{
+    background:var(--tarjeta);
+    padding:20px 15px;
+    border-radius:16px;
+    min-width:85px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+    border-bottom: 3px solid var(--dorado);
+    transition: transform .3s;
+}
+
+.time-box:hover {
+    transform: scale(1.05);
+}
+
+.time-box span{
+    font-size:36px;
+    font-weight:bold;
+    color:var(--dorado);
+    display: block;
+    line-height: 1.2;
+}
+
+.time-box small {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dorado-oscuro);
+}
+
+/* ==================== ITINERARIO ==================== */
+.itinerary {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+}
+
+.itinerary::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--dorado-claro), transparent);
+}
+
+.itinerary-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 0;
+    text-align: left;
+}
+
+.itinerary-dot {
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--tarjeta);
+    border: 2px solid var(--dorado-claro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--dorado);
+    z-index: 1;
+    box-shadow: 0 5px 15px rgba(0,0,0,.05);
+}
+
+.itinerary-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--dorado-oscuro);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.itinerary-content p {
+    font-size: 15px;
+    color: var(--texto);
+    line-height: 1.5;
+}
+
+.itinerary-content .time-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 2px;
+}
+
+/* ==================== LUGAR ==================== */
+.location-card {
+    background: var(--tarjeta);
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.05);
+    border: 1px solid rgba(214,180,90,0.15);
+}
+
+.location-card .location-icon {
+    font-size: 40px;
+    color: var(--dorado);
+    margin-bottom: 15px;
+}
+
+.location-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--dorado-oscuro);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.location-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--texto);
+    margin-bottom: 20px;
+}
+
+/* ==================== INFO BOXES ==================== */
+.info-card {
+    background: var(--tarjeta);
+    padding: 35px 25px;
+    border-radius: 20px;
+    min-width: 200px;
+    flex: 1;
+    box-shadow: 0 10px 25px rgba(0,0,0,.05);
+    border: 1px solid rgba(214,180,90,0.15);
+    transition: transform .3s, box-shadow .3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--dorado-claro), transparent);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.08);
+}
+
+.info-card .card-icon {
+    font-size: 32px;
+    color: var(--dorado);
+    margin-bottom: 15px;
+}
+
+.info-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--dorado-oscuro);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.info-card p {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* ==================== GALERÍA ==================== */
+.gallery-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,.1);
+    transition: transform .4s, box-shadow .4s;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+}
+
+.gallery-item img {
+    width: 280px;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item .gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.4));
+    color: #fff;
+    font-family: 'Great Vibes', cursive;
+    font-size: 22px;
+    opacity: 0;
+    transition: opacity .4s;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+/* ==================== CONFIRMACIÓN ==================== */
+.confirm-section {
+    background: linear-gradient(135deg, #fff, var(--crema));
+    margin-top: 20px;
+    padding: 80px 20px;
+    border-radius: 30px 30px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.confirm-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+}
+
+/* ==================== BOTONES ==================== */
+.btn{
+    display:inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin:10px;
+    padding:15px 35px;
+    border-radius:50px;
+    font-weight:bold;
+    text-decoration:none;
+    color:#fff;
+    background: linear-gradient(135deg, var(--dorado), var(--dorado-claro));
+    transition: all .3s;
+    box-shadow:0 5px 20px rgba(184, 134, 11, 0.3);
+    font-size: 15px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4);
+}
+
+.btn.green {
+    background: linear-gradient(135deg, #25D366, #20bd5a);
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+}
+
+.btn.green:hover {
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+
+.btn.outline {
+    background: transparent;
+    border: 2px solid var(--dorado);
+    color: var(--dorado);
+}
+
+.btn.outline:hover {
+    background: var(--dorado);
+    color: #fff;
+}
+
+/* ==================== MÚSICA ==================== */
+.music-btn{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background: linear-gradient(135deg, var(--dorado), var(--dorado-claro));
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    cursor:pointer;
+    z-index: 1000;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+    border: none;
+    transition: transform .3s;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+}
+
+.playing {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(184, 134, 11, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(184, 134, 11, 0); }
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--crema);
+    position: relative;
+    z-index: 1;
+}
+
+.footer p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--dorado-oscuro);
+    letter-spacing: 1px;
+}
+
+.footer .footer-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: var(--dorado);
+    margin-top: 10px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 600px) {
+    .countdown { gap: 10px; }
+    .time-box { min-width: 70px; padding: 15px 10px; }
+    .time-box span { font-size: 28px; }
+    .itinerary::before { left: 20px; }
+    .itinerary-dot { width: 45px; min-width: 45px; height: 45px; font-size: 16px; }
+    .hero-img { width: 200px; height: 200px; }
+    .bible-quote { font-size: 18px; }
+    .gallery-item img { width: 250px; height: 300px; }
+    .info-card { min-width: 100%; }
+}
+
+.decor{ width:100px; height:2px; background:var(--linea); margin:20px auto; opacity: 0.5; }
+</style>
+</head>
+<body>
+
+<!-- PANTALLA DE BIENVENIDA -->
+<div class="splash-screen" id="splash" onclick="openInvitation()">
+    <div class="splash-cross"><i class="fas fa-cross"></i></div>
+    <h2>Te invitamos al Bautizo de</h2>
+    <h1>Arantza</h1>
+    <button class="splash-open" onclick="openInvitation()">Abrir Invitacion</button>
+</div>
+
+<!-- PARTÍCULAS FLOTANTES -->
+<div class="particles" id="particles"></div>
+
+<!-- HERO -->
+<section class="hero fadeUp">
+    <div class="hero-badge"><i class="fas fa-dove" style="margin-right:8px"></i> MI BAUTIZO</div>
+    <h1>Arantza Violeta Morales Correa</h1>
+    <div class="hero-img-wrapper">
+        <div class="hero-img-ring"></div>
+        <img src="img/arantza.jpeg" class="hero-img" alt="Arantza">
+    </div>
+    <p class="hero-date">14 de Marzo de 2026 &bull; 6:30 PM</p>
+    <div class="hero-dove"><i class="fas fa-dove"></i></div>
+</section>
+
+<!-- CITA BÍBLICA -->
+<section class="fadeUp">
+    <div class="bible-section">
+        <p class="bible-quote">
+            "Dejen que los niños vengan a mi, y no se lo impidan, porque el reino de los cielos es de quienes son como ellos."
+        </p>
+        <p class="bible-ref">&mdash; Mateo 19:14</p>
+    </div>
+</section>
+
+<!-- MENSAJE DE BIENVENIDA -->
+<section class="fadeUp">
+    <div class="quote-box" style="max-width: 650px;">
+        <div class="card-icon"><i class="fas fa-heart"></i></div>
+        <h3 style="color:var(--dorado-oscuro); margin-bottom: 10px;">Querida Familia y Amigos</h3>
+        <p style="line-height:1.8">Los esperamos con mucha alegria para compartir este momento sagrado en la vida de nuestra pequena Arantza. Su presencia sera la mejor de las bendiciones.</p>
+    </div>
+</section>
+
+<!-- CUENTA REGRESIVA -->
+<section class="fadeUp">
+    <span class="section-title">Faltan</span>
+    <h2 class="section-heading">Cuenta Regresiva</h2>
+    <div class="section-divider">
+        <span class="line"></span>
+        <span class="icon"><i class="fas fa-clock"></i></span>
+        <span class="line"></span>
+    </div>
+    <div class="countdown">
+        <div class="time-box">
+            <span id="days">0</span>
+            <small>Dias</small>
+        </div>
+        <div class="time-box">
+            <span id="hours">0</span>
+            <small>Horas</small>
+        </div>
+        <div class="time-box">
+            <span id="minutes">0</span>
+            <small>Minutos</small>
+        </div>
+        <div class="time-box">
+            <span id="seconds">0</span>
+            <small>Segundos</small>
+        </div>
+    </div>
+</section>
+
+<!-- PADRES Y PADRINOS -->
+<section class="fadeUp">
+    <span class="section-title">Con la bendicion de</span>
+    <h2 class="section-heading">Mis papas y Padrinos</h2>
+    <div class="section-divider">
+        <span class="line"></span>
+        <span class="icon"><i class="fas fa-users"></i></span>
+        <span class="line"></span>
+    </div>
+    <div class="card-box">
+        <div class="quote-box">
+            <div class="card-icon"><i class="fas fa-heart"></i></div>
+            <h3 style="color:var(--dorado)">Mis Padres</h3>
+           <p> Amaninalli Correa Hernandez <br>Ivan Rene Carrasco Morales</p>
+        </div>
+        <div class="quote-box">
+            <div class="card-icon"><i class="fas fa-hands-praying"></i></div>
+            <h3 style="color:var(--dorado)">Mis Padrinos</h3>
+           <p>Maria de los Angeles Carrasco Garcia<br></p>
+             <p>Ariana Castillo Jaime<br></p>
+        </div>
+    </div>
+</section>
+
+<!-- ITINERARIO -->
+<section class="fadeUp">
+    <span class="section-title">Programa</span>
+    <h2 class="section-heading">Itinerario del Dia</h2>
+    <div class="section-divider">
+        <span class="line"></span>
+        <span class="icon"><i class="fas fa-calendar-day"></i></span>
+        <span class="line"></span>
+    </div>
+    <div class="itinerary">
+        <div class="itinerary-item">
+            <div class="itinerary-dot"><i class="fas fa-church"></i></div>
+            <div class="itinerary-content">
+                <p class="time-label">6:30 PM</p>
+                <h4>Ceremonia Religiosa</h4>
+                <p>Sacramento del Bautismo</p>
+            </div>
+        </div>
+        <div class="itinerary-item">
+            <div class="itinerary-dot"><i class="fas fa-camera"></i></div>
+            <div class="itinerary-content">
+                <p class="time-label">7:30 PM</p>
+                <h4>Sesion de Fotos</h4>
+                <p>Recuerdos en familia</p>
+            </div>
+        </div>
+        <div class="itinerary-item">
+            <div class="itinerary-dot"><i class="fas fa-champagne-glasses"></i></div>
+            <div class="itinerary-content">
+                <p class="time-label">8:00 PM</p>
+                <h4>Recepcion</h4>
+                <p>Celebracion con familia y amigos</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LUGAR DEL EVENTO -->
+<section class="fadeUp">
+    <span class="section-title">Ubicacion</span>
+    <h2 class="section-heading">Lugar del Evento</h2>
+    <div class="section-divider">
+        <span class="line"></span>
+        <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+        <span class="line"></span>
+    </div>
+    <div class="location-card">
+        <div class="location-icon"><i class="fas fa-church"></i></div>
+        <h3>Ceremonia y Recepcion</h3>
+        <p>Te esperamos con los brazos abiertos. Consulta la ubicacion exacta en el mapa.</p>
+        <a class="btn" target="_blank" href="https://maps.app.goo.gl/KDvzPZ6c2WqWfiBd7">
+            <i class="fas fa-map-marked-alt"></i> Ver en Google Maps
+        </a>
+    </div>
+</section>
+
+<!-- VESTIMENTA Y REGALO -->
+<section class="fadeUp">
+    <span class="section-title">Detalles</span>
+    <h2 class="section-heading">Informacion Importante</h2>
+    <div class="section-divider">
+        <span class="line"></span>
+        <span class="icon"><i class="fas fa-info-circle"></i></span>
+        <span class="line"></span>
+    </div>
+    <div class="card-box">
+        <div class="info-card">
+            <div class="card-icon"><i class="fas fa-shirt"></i></div>
+            <h3>Vestimenta</h3>
+            <p>Formal - Colores Claros</p>
+        </div>
+        <div class="info-card">
+            <div class="card-icon"><i class="fas fa-baby"></i></div>
+            <h3>Evento Familiar</h3>
+            <p>Niños bienvenidos</p>
+        </div>
+    </div>
+</section>
+
+<!-- GALERÍA DE FOTOS -->
+<section class="fadeUp">
+    <span class="section-title">Momentos</span>
+    <h2 class="section-heading">Galeria de Fotos</h2>
+    <div class="section-divider">
+        <span class="line"></span>
+        <span class="icon"><i class="fas fa-camera-retro"></i></span>
+        <span class="line"></span>
+    </div>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="img/arantza.jpeg" alt="Arantza">
+            <div class="gallery-overlay">Arantza</div>
+        </div>
+        <div class="gallery-item">
+            <img src="img/arantza2.jpeg" alt="Arantza">
+            <div class="gallery-overlay">Arantza</div>
+        </div>
+        <div class="gallery-item">
+            <img src="img/arantza3.jpeg" alt="Arantza">
+            <div class="gallery-overlay">Mi Bautizo</div>
+        </div>
+    </div>
+</section>
+
+<!-- CONFIRMACIÓN -->
+<section class="fadeUp confirm-section">
+    <span class="section-title">RSVP</span>
+    <h2 class="section-heading" style="font-size: 32px;">Nos acompañas?</h2>
+    <div class="section-divider">
+        <span class="line"></span>
+        <span class="icon"><i class="fas fa-envelope"></i></span>
+        <span class="line"></span>
+    </div>
+    <p style="margin-bottom: 25px; font-size: 17px; max-width: 500px; line-height: 1.7;">
+        Tu presencia es muy importante para nosotros. Por favor, confirma tu asistencia antes del <strong>1 de Marzo</strong>.
+    </p>
+    <a class="btn green" href="https://wa.me/5210000000000?text=Hola!+Confirmo+mi+asistencia+al+bautizo+de+Arantza" target="_blank">
+        <i class="fab fa-whatsapp"></i> Confirmar por WhatsApp
+    </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>Con amor y bendiciones</p>
+    <p class="footer-name">Familia Morales Correa</p>
+    <div class="section-divider" style="margin: 15px auto; max-width: 200px;">
+        <span class="line"></span>
+        <span class="icon"><i class="fas fa-cross"></i></span>
+        <span class="line"></span>
+    </div>
+    <p style="font-size:13px; opacity:0.6;">14 de Marzo de 2026</p>
+</footer>
+
+<!-- BOTÓN DE MÚSICA -->
+<button class="music-btn" id="mBtn" onclick="toggleMusic()" aria-label="Reproducir musica">
+    <i class="fas fa-music"></i>
+</button>
+<!-- YouTube IFrame API para reproducir As It Was - Harry Styles -->
+<div id="yt-player-container" style="position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none;">
+    <div id="yt-player"></div>
+</div>
+
+<script>
+// --- YOUTUBE IFRAME API ---
+var ytPlayer;
+var ytReady = false;
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('yt-player', {
+        height: '1',
+        width: '1',
+        videoId: 'H5v3kku4y6Q',
+        playerVars: {
+            autoplay: 0,
+            loop: 1,
+            playlist: 'H5v3kku4y6Q',
+            controls: 0,
+            showinfo: 0,
+            modestbranding: 1,
+            fs: 0,
+            rel: 0
+        },
+        events: {
+            'onReady': function(event) {
+                ytReady = true;
+            },
+            'onStateChange': function(event) {
+                if (event.data === YT.PlayerState.ENDED) {
+                    ytPlayer.playVideo();
+                }
+            }
+        }
+    });
+}
+
+// --- PANTALLA DE BIENVENIDA ---
+function openInvitation() {
+    const splash = document.getElementById('splash');
+    splash.classList.add('hide');
+    document.body.style.overflow = 'auto';
+    // Intentar reproducir música al abrir
+    if (ytReady && ytPlayer) {
+        ytPlayer.playVideo();
+        document.getElementById("mBtn").classList.add('playing');
+    }
+}
+
+// Evitar scroll mientras la pantalla de bienvenida esté visible
+document.body.style.overflow = 'hidden';
+
+// --- PARTÍCULAS FLOTANTES ---
+function createParticles() {
+    const container = document.getElementById('particles');
+    const symbols = ['✦', '✧', '☆', '✝', '♡', '✦'];
+    for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.fontSize = (Math.random() * 16 + 10) + 'px';
+        particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+        particle.style.animationDelay = (Math.random() * 10) + 's';
+        container.appendChild(particle);
+    }
+}
+createParticles();
+
+// --- CUENTA REGRESIVA ---
+const eventDate = new Date("March 14, 2026 18:30:00").getTime();
+const updateTimer = () => {
+    const now = new Date().getTime();
+    const d = eventDate - now;
+    if(d < 0) {
+        document.getElementById('days').innerText = '0';
+        document.getElementById('hours').innerText = '0';
+        document.getElementById('minutes').innerText = '0';
+        document.getElementById('seconds').innerText = '0';
+        return;
+    }
+    document.getElementById('days').innerText = Math.floor(d/(1000*60*60*24));
+    document.getElementById('hours').innerText = Math.floor((d/(1000*60*60))%24);
+    document.getElementById('minutes').innerText = Math.floor((d/(1000*60))%60);
+    document.getElementById('seconds').innerText = Math.floor((d/1000)%60);
+};
+setInterval(updateTimer, 1000);
+updateTimer();
+
+// --- ANIMACIÓN AL HACER SCROLL ---
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fadeUp').forEach(section => {
+    observer.observe(section);
+});
+
+// --- CONTROL DE MÚSICA ---
+function toggleMusic(){
+    if (!ytReady || !ytPlayer) return;
+    const btn = document.getElementById("mBtn");
+    var state = ytPlayer.getPlayerState();
+    if(state === YT.PlayerState.PLAYING){
+        ytPlayer.pauseVideo();
+        btn.classList.remove('playing');
+    } else {
+        ytPlayer.playVideo();
+        btn.classList.add('playing');
+    }
+}
+</script>
+
+</body>
+</html>
